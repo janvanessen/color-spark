@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use OpenAI\Laravel\Facades\OpenAI;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/colors', function (Request $request) {
-    $text = request('text', 'default'); 
+    $prompt = request('text', 'default'); 
+
+    $result = OpenAI::completions()->create([
+        'model' => 'text-davinci-003',
+        'prompt' => $prompt,
+    ]);
+    
+    $answer = $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
+
     return response()->json([
-        'name' => 'white',
-        'color' => '#fffff',
-        'text' => $text,
+        'answer' => $answer
     ]);
 });

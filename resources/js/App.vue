@@ -50,7 +50,7 @@ export default {
       const { data } = await axios.get("/api/colors", 
         { 
           params: {
-            text: "hello world"
+            text: "PHP is"
           }
         });
       console.log(data);
