@@ -20,16 +20,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/colors', function (Request $request) {
-    $prompt = request('text', 'default'); 
+    $description = request('text', ''); 
+
+    $prompt = "Generate a color palette corresponding the description '" .  $description . "' with five colors as JSON array";
 
     $result = OpenAI::completions()->create([
         'model' => 'text-davinci-003',
         'prompt' => $prompt,
+        'max_tokens' => 100,
     ]);
     
-    $answer = $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
+    $response = $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
 
     return response()->json([
-        'answer' => $answer
+        'answer' => $response
     ]);
 });

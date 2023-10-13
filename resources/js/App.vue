@@ -2,24 +2,14 @@
 
 <section class="section">
   <div class="container">
-    <h2 class="title">Hello Counter</h2>
-    <div class="level">
-      <div class="level-item">
-      <h1>
-        <button class="button" @click="incrementCounter">
-        +
-        </button>
-        <span>{{counter}}</span>
-        <button class="button" @click="decrementCounter">
-        -
-        </button>
-        </h1>
-      </div>
-
-    </div>
+    <h2 class="title">Color Spark</h2>
+    <input v-model="input" placeholder="edit me" v-on:keyup.enter="getColors" />
     <button class="button" @click="getColors">
      getColors
     </button>
+    <div>
+    {{output}}
+    </div>
   </div>
 </section>
 
@@ -34,26 +24,22 @@ export default {
   },
   data() {
     return {
-      title: "Counter",
-      counter: 0
+      input: '',
+      output: '',
     };
   },
   methods: {
-    incrementCounter() {
-      this.counter++;
-    },
-    decrementCounter() {
-      this.counter--;
-    },
     async getColors() {
       console.log('call colors');
+      this.output = '';
       const { data } = await axios.get("/api/colors", 
         { 
           params: {
-            text: "PHP is"
+            text: this.input
           }
-        });
+        }); 
       console.log(data);
+      this.output = data.answer;
     }
   }
 };
