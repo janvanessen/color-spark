@@ -1,10 +1,10 @@
 <template>
     <div class="main-container">
-        <h1>Color Spark</h1>
-        <div class="tagline">
-            Create unique color schemes from text descriptions
-        </div>
         <div class="form-wrapper">
+            <h1>Color Spark</h1>
+            <div class="tagline">
+                Create unique color schemes from text descriptions
+            </div>
             <InputText
                 class="form-input"
                 v-model="input"
@@ -18,7 +18,7 @@
             />
         </div>
 
-        <ProgressSpinner class="spinner" strokeWidth="5" v-if="isLoading"/>
+        <ProgressSpinner class="spinner" strokeWidth="5" v-if="isLoading" />
         <div class="color-sets" v-else>
             <div
                 class="color-set"
@@ -77,7 +77,6 @@ export default {
 </script>
 
 <style scoped>
-
 .main-container {
     margin: 80px auto;
     text-align: center;
@@ -135,12 +134,83 @@ h1 {
     margin-top: 10px;
     display: inline-block;
     text-align: center;
+    font-size: 16px;
 }
 
 .spinner {
     margin: 100px;
-    width: 50px; 
-    height: 50px
+    width: 50px;
+    height: 50px;
 }
 
+@media screen and (max-width: 767px) {
+    
+.main-container {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.form-wrapper {
+    width: 300px;
+    margin: 0px auto;
+}
+
+.form-input {
+    width: 200px;
+}
+
+.form-button {
+    margin-left: 10px;
+    width: 70px;
+}
+
+.color-sets {
+    width: 300px;
+    margin: 50px auto 100px auto;
+}
+
+.color-set {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 10px;
+    margin-top: 50px;
+}
+
+.tagline {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.color-block {
+    width: 60px;
+    height: 101px;
+    display: inline-block;
+}
+
+.color-showcase {
+    width: 60px;
+    height: 101px;
+    display: inline-block;
+}
+
+.color-label {
+    width: 60px;
+    height: 15px;
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner {
+    margin: 50px;
+    width: 25px;
+    height: 25px;
+}
+
+}
 </style>
