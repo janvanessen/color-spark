@@ -20,19 +20,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/colors', function (Request $request) {
-    $description = request('text', ''); 
+    $description = request('text', '');
 
-    $prompt = "Generate a color palette corresponding the description '" .  $description . "' with five colors as JSON array";
+ 
+    $prompt = "Generate a JSON array with three color palettes." .
+              "Each color palette is a JSON array of uppercase hex values corresponding the description '" .
+               $description . "' with five colors. " .
+        "Example: [\"#1D2549\", \"#4E637A\", \"#9EADC8\", \"#D4E6FD\", \"#E3E8F2\"] ";
+
 
     $result = OpenAI::completions()->create([
         'model' => 'text-davinci-003',
         'prompt' => $prompt,
-        'max_tokens' => 100,
+        'max_tokens' => 1000,
     ]);
-    
-    $response = $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
+
+    $response = $result['choices'][0]['text'];
 
     return response()->json([
-        'answer' => $response
+        'colorSets' => $response
     ]);
 });

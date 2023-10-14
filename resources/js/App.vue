@@ -1,11 +1,13 @@
 <template>
     <div class="main-container">
         <h1>Color Spark</h1>
-        <div class="tagline">Create unique color schemes from text descriptions</div>        
+        <div class="tagline">
+            Create unique color schemes from text descriptions
+        </div>
         <div class="form-wrapper">
             <InputText
                 class="form-input"
-                v-model="value"
+                v-model="input"
                 autofocus
                 v-on:keyup.enter="getColors"
             />
@@ -16,7 +18,26 @@
             />
         </div>
         <div class="color-sets">
-            {{ output }}
+            <div
+                class="color-set"
+                v-for="(colorSet, index) in colorSets"
+                :key="index"
+            >
+
+                <span
+                    class="color-block"
+                    v-for="color in colorSet"
+                    :key="color"
+                >
+                    <div
+                        class="color-showcase"
+                        :style="{ 'background-color': color }"
+                    />
+                    <div>
+                        {{ color }}
+                    </div>
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -31,20 +52,20 @@ export default {
     data() {
         return {
             input: "",
-            output: "",
+            colorSets: [],
         };
     },
     methods: {
         async getColors() {
-            console.log("call colors");
-            this.output = "";
+            this.colorSets = [];
             const { data } = await axios.get("/api/colors", {
                 params: {
                     text: this.input,
                 },
             });
-            console.log(data);
-            this.output = data.answer;
+            console.log(data.colorSets);
+            this.colorSets = JSON.parse(data.colorSets);
+            console.log(this.colorSets);
         },
     },
 };
@@ -72,17 +93,38 @@ export default {
 
 .color-sets {
     width: 600px;
-    margin-top: 100px;
+    margin: 100px auto 200px auto;
+}
+
+.color-set {
+    margin-bottom: 80px
 }
 
 h1 {
-  font-size: 50px;
-  line-height: 10px;
+    font-size: 50px;
+    line-height: 10px;
 }
 
 .tagline {
-  font-size: 18px;
-  margin-bottom: 30px;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
+.color-block {
+    width: 91px;
+    height: 184px;
+    display: inline-block;
+}
+
+.color-showcase {
+    width: 91px;
+    height: 154px;
+    display: inline-block;
+}
+
+.color-label {
+    width: 91px;
+    height: 30px;
+    display: inline-block;
+}
 </style>
