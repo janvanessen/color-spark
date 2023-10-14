@@ -17,7 +17,9 @@
                 @click="getColors"
             />
         </div>
-        <div class="color-sets">
+
+        <ProgressSpinner class="spinner" strokeWidth="5" v-if="isLoading"/>
+        <div class="color-sets" v-else>
             <div
                 class="color-set"
                 v-for="(colorSet, index) in colorSets"
@@ -34,7 +36,7 @@
                         class="color-showcase"
                         :style="{ 'background-color': color }"
                     />
-                    <div>
+                    <div class="color-label">
                         {{ color }}
                     </div>
                 </span>
@@ -54,18 +56,20 @@ export default {
         return {
             input: "",
             colorSets: [],
+            isLoading: false,
         };
     },
     methods: {
         async getColors() {
+            this.isLoading = true;
             this.colorSets = [];
             const { data } = await axios.get("/api/colors", {
                 params: {
                     text: this.input,
                 },
             });
-            console.log(data.colorSets);
             this.colorSets = JSON.parse(data.colorSets);
+            this.isLoading = false;
             console.log(this.colorSets);
         },
     },
@@ -73,6 +77,7 @@ export default {
 </script>
 
 <style scoped>
+
 .main-container {
     margin: 80px auto;
     text-align: center;
@@ -95,11 +100,11 @@ export default {
 .color-sets {
     width: 600px;
     margin: 100px auto 200px auto;
-    text-align: left;
 }
 
 .color-set {
     margin-bottom: 80px;
+    text-align: left;
 }
 
 h1 {
@@ -113,20 +118,29 @@ h1 {
 }
 
 .color-block {
-    width: 91px;
-    height: 184px;
+    width: 120px;
+    height: 202px;
     display: inline-block;
 }
 
 .color-showcase {
-    width: 91px;
-    height: 154px;
+    width: 120px;
+    height: 202px;
     display: inline-block;
 }
 
 .color-label {
-    width: 91px;
+    width: 120px;
     height: 30px;
+    margin-top: 10px;
     display: inline-block;
+    text-align: center;
 }
+
+.spinner {
+    margin: 100px;
+    width: 50px; 
+    height: 50px
+}
+
 </style>

@@ -33,7 +33,7 @@ Route::get('/colors', function (Request $request) {
     $result = OpenAI::completions()->create([
         'model' => 'text-davinci-003',
         'prompt' => $prompt,
-        'max_tokens' => 1000,
+        'max_tokens' => 2000,
     ]);
 
     $response = $result['choices'][0]['text'];

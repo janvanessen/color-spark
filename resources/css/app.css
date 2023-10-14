@@ -1,0 +1,6 @@
+
+/* Prevent scrollbar repositioning */
+
+body {
+    width: calc(100vw - 34px);
+}
