@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['GET'],
 
-    'allowed_origins' => [],
+    'allowed_origins' => ['https://color-spark.janvanessen.com/'],
 
     'allowed_origins_patterns' => [],
 
