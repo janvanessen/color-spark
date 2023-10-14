@@ -1,4 +1,4 @@
-import {createApp} from 'vue';
+import { createApp } from 'vue';
 import 'primevue/resources/themes/bootstrap4-light-blue/theme.css';
 import PrimeVue from 'primevue/config';
 import Button from "primevue/button";

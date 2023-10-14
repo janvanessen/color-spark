@@ -23,10 +23,11 @@
                 v-for="(colorSet, index) in colorSets"
                 :key="index"
             >
+                <h2>{{ colorSet.name }}</h2>
 
                 <span
                     class="color-block"
-                    v-for="color in colorSet"
+                    v-for="color in colorSet.colors"
                     :key="color"
                 >
                     <div
@@ -94,10 +95,11 @@ export default {
 .color-sets {
     width: 600px;
     margin: 100px auto 200px auto;
+    text-align: left;
 }
 
 .color-set {
-    margin-bottom: 80px
+    margin-bottom: 80px;
 }
 
 h1 {

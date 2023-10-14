@@ -22,11 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/colors', function (Request $request) {
     $description = request('text', '');
 
- 
+
     $prompt = "Generate a JSON array with three color palettes." .
-              "Each color palette is a JSON array of uppercase hex values corresponding the description '" .
-               $description . "' with five colors. " .
-        "Example: [\"#1D2549\", \"#4E637A\", \"#9EADC8\", \"#D4E6FD\", \"#E3E8F2\"] ";
+    "Each color palette correspond the description '" . $description . "' " . 
+        "Each color palette is represented by a JSON object including the name of the palette and " . 
+        "an array of uppercase hex values with five colors '" .
+        "Example: {\"name\": \"Deap Ocean\", \"colors\": [\"#1D2549\", \"#4E637A\", \"#9EADC8\", \"#D4E6FD\", \"#E3E8F2\"] }";
 
 
     $result = OpenAI::completions()->create([
