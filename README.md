@@ -3,6 +3,9 @@
 
 Create unique color schemes from text descriptions
 
+## Live demo
+- [color-spark.janvanessen.com](https://color-spark.janvanessen.com/)
+
 ## Frontend Stack
 - [Vue](https://vuejs.org/) - JavaScript Framework
 - [Vite](https://vitejs.dev/) - Frontend Tooling
