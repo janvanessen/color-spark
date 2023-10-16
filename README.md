@@ -10,11 +10,11 @@ Create unique color schemes from text descriptions
 - [PrimeVue](https://primevue.org/) - UI Component Library
 
 ## Backend Stack
-- [Laravel 10 - PHP Framework](https://laravel.com/)
-- [Open AI for Laravel](https://github.com/openai-php/laravel)
+- [Laravel 10](https://laravel.com/) - PHP Framework
+- [Open AI for Laravel](https://github.com/openai-php/laravel) - PHP API client for the [Open AI API](https://platform.openai.com/docs/introduction)
 
 ## Deployment
-- [Laravel Forge](https://forge.laravel.com/)
+- [Laravel Forge](https://forge.laravel.com/) - Server management
 
 ## Setup
 
